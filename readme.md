@@ -1,6 +1,6 @@
 # NLU-based pattern matching for Samsung Bixby Hackathon
 
-## Key-Points of our solution:
+## Key Points of our Solution
 
 1. Assigning of priority-based weights: Unit weights are assigned to the possible grammars on the basis of presence of concepts, placeholders and keywords. In case of keywords, we have created a list of reject words (articles, prepositions) and added them to our custom resource folder. The keywords which are not present in the reject word list are assigned value of 1 whereas the keywords which occur in the name of a grammar are given weights of 2 (Reject words present in the grammar names are removed before checking for the occurrence of keywords). This step ensures the generality and robustness of the algorithm to the addition of new grammars. 
 
@@ -17,7 +17,7 @@
 7. The datastructures used are stl implementations of red-black trees and hashmaps which further boost the running time of our algorithm.
 
 
-ERRATA:
+## Errata
 
 During the conception and integration of our algorithm into a wholesome model, we encountered the following inconsistencies in the files provided to us: 
 
@@ -30,14 +30,14 @@ During the conception and integration of our algorithm into a wholesome model, w
 * The CreateAlarmByName grammar included a spelling mistake and listed 'alarm' as 'alram'. The RenameEvent grammar also included a spelling mistake listing 'event' as 'even'.
 
 
-ABSTRACT:
+## Abstract
 
-Our algorithm uses an approach in which we assign scalar scores(representative of the probability that the corresponding grammar is the grammar of the input string) to each of the grammars based on the concepts/placeholder/keywords present in the input string and finally the grammar with the highest scalar score is written to the final output file. Based on the inner workings of our algorithm, detection of the values of the placeholders such as contact names and places, was trivially implemented by storing the location of the substring that was being used to detect their presence.
+Our algorithm uses an approach in which we assign scalar scores (representative of the probability that the corresponding grammar is the grammar of the input string) to each of the grammars based on the concepts/placeholder/keywords present in the input string and finally the grammar with the highest scalar score is written to the final output file. Based on the inner workings of our algorithm, detection of the values of the placeholders such as contact names and places, was trivially implemented by storing the location of the substring that was being used to detect their presence.
 
 Handling open-phrases involved the detection of the grammar line (from the predicted grammar file) which most closely corresponded to the input string. After this step, a rejection-based scheme was implemented which removed all the concept phrases, placeholders such as contact names and places and reject-words such as articles and prepositions and extracted the open-phrases from the remaining string.
 
 
-DATA STRUCTURES USED: 
+## Data Structures Used 
 
 (These datastructures are generated from the provided text files)
 
@@ -68,7 +68,7 @@ DATA STRUCTURES USED:
 13. year: It is a vector of integers that is used to find four digit numbers from the input string. These numbers are considered to be year values and are treated as a <year> placeholder. This placeholder is then used to check for complex <dateTime> placeholders.
 
 
-CUSTOM RESOURCE FILES:
+## Custom Resource Files
 
 1. reject_words.txt: It contains a collection of all common words that are not relevant enough to be used as keywords that might increase the probability of a certain grammar being related to a given input string. For example: a, an, the, for, etc.
 
@@ -83,7 +83,7 @@ CUSTOM RESOURCE FILES:
 6. datetimeformats.txt: It contains a list of all possible day, date and time combinations that might constitute a <dateTime> placeholder in an input string. This was generated from the list given in the problem statement.
 
 
-DESCRIPTION OF FUNCTIONS:
+## Description of the Functions
 
 1. make_placeholder, make_grammar, make_concept, make_custom_resource, make_conjunctions: These functions populate all the described datastructures by reading the provided text files.
 
